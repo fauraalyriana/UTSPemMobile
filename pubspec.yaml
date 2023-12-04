@@ -23,5 +23,14 @@ dev_dependencies:
 flutter:
   assets:
     - assets/GEMAYU.png
+<<<<<<< Updated upstream
 
   uses-material-design: true
+=======
+    - assets/profile-bg3.jpg
+    - assets/home.png
+    - assets/body-bg.jpg
+
+ 
+  uses-material-design: true 
+>>>>>>> Stashed changes
