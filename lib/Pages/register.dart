@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_app_uts/Component/navbar.dart';
 
 import 'package:flutter_app_uts/Pages/login.dart';
 
@@ -64,10 +65,33 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(), // Tambahkan drawer menu ke dalam Scaffold
       appBar: AppBar(
-        title: const Text('Register'),
+        title: Text(
+          'Gemayu',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: const Color.fromARGB(255, 43, 41, 41),
+            fontSize: 24
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [Color.fromARGB(255, 230, 161, 106), Color.fromARGB(255, 105, 57, 12)],
+            ),
+          ),
+        ),
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/bg2.png'), // Ganti dengan path gambar background Anda
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
@@ -266,6 +290,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  primary: const Color.fromARGB(255, 145, 99, 82),
                 ),
                 child: const Text('Submit', style: TextStyle(fontSize: 16.0)),
               ),
