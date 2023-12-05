@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app_uts/Pages/register.dart';
+import 'package:flutter_app_uts/Pages/listView.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,9 +18,35 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: Text(
+          'Masuk',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 250, 248, 248),
+            fontSize: 24,
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color.fromARGB(255, 230, 161, 106),
+                Color.fromARGB(255, 105, 57, 12),
+              ],
+            ),
+          ),
+        ),
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                'assets/bg2.png'), // Ganti dengan path gambar background Anda
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
@@ -28,9 +54,10 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               const Center(
                 child: Text(
-                  'Silahkan Mengisi Kode Generus Anda',
+                  'Buat Ke Profil masukin kode generus kamu dulu yaa..',
                   style: TextStyle(
                     fontSize: 20,
+                    color: Color.fromARGB(255, 161, 107, 63),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -56,14 +83,14 @@ class _LoginPageState extends State<LoginPage> {
                   if (_formKey.currentState!.validate()) {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const RegisterPage()),
+                      MaterialPageRoute(builder: (context) => ShowDataTable()),
                     );
                   }
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  primary: const Color.fromARGB(255, 145, 99, 82),
                 ),
                 child: const Text('Submit', style: TextStyle(fontSize: 16.0)),
               ),

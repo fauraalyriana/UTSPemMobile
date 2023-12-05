@@ -70,17 +70,19 @@ class _RegisterPageState extends State<RegisterPage> {
         title: Text(
           'Gemayu',
           style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: const Color.fromARGB(255, 43, 41, 41),
-            fontSize: 24
-          ),
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 250, 248, 248),
+              fontSize: 24),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [Color.fromARGB(255, 230, 161, 106), Color.fromARGB(255, 105, 57, 12)],
+              colors: [
+                Color.fromARGB(255, 230, 161, 106),
+                Color.fromARGB(255, 105, 57, 12)
+              ],
             ),
           ),
         ),
@@ -88,7 +90,8 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/bg2.png'), // Ganti dengan path gambar background Anda
+            image: AssetImage(
+                'assets/bg2.png'), // Ganti dengan path gambar background Anda
             fit: BoxFit.cover,
           ),
         ),
@@ -112,6 +115,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Nama',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -129,6 +134,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Tanggal Lahir',
+                      filled: true,
+                      fillColor: Colors.white,
                     ),
                     controller: TextEditingController(
                       text: '${_selectedDate.toLocal()}'.split(' ')[0],
@@ -142,6 +149,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Ayah',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -157,6 +166,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Ibu',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -183,6 +194,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Pendidikan',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
               ),
               const SizedBox(height: 16),
@@ -202,6 +215,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Desa',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
               ),
               const SizedBox(height: 16),
@@ -221,6 +236,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Kelompok',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
               ),
               const SizedBox(height: 16),
@@ -240,6 +257,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Jenis Kelamin',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
               ),
               const SizedBox(height: 16),
@@ -248,6 +267,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: const InputDecoration(
                   labelText: 'Kontak',
                   border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../Component/navbar.dart'; // Import komponen DrawerMenu
-import 'register.dart'; // Import file register.dart jika belum diimport
+import '../Component/navbar.dart';
+import 'register.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -15,7 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(), // Tambahkan drawer menu ke dalam Scaffold
+      drawer: NavBar(),
       appBar: AppBar(
         title: Text(
           'Gemayu',

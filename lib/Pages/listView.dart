@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import '../Component/navbar.dart';
+
 
 class ShowDataTable extends StatefulWidget {
+  const ShowDataTable({super.key});
+
   @override
   _ShowDataTableState createState() => _ShowDataTableState();
 }
@@ -12,8 +16,28 @@ class _ShowDataTableState extends State<ShowDataTable> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
-        title: Text('Data Table'),
+        title: Text(
+          'List Generus',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 250, 248, 248),
+            fontSize: 24,
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color.fromARGB(255, 230, 161, 106),
+                Color.fromARGB(255, 105, 57, 12),
+              ],
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
