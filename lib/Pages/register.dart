@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_app_uts/Component/navbar.dart';
 
 import 'package:flutter_app_uts/Pages/login.dart';
+import 'package:flutter_app_uts/Pages/register_bloc.dart';
 
 final List<String> _educationList = ['SD', 'SMP', 'SMA'];
 final List<String> _villageList = ['Barat 1', 'Barat 2', 'Barat 3'];
@@ -67,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       drawer: NavBar(), // Tambahkan drawer menu ke dalam Scaffold
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Gemayu',
           style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -75,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
               fontSize: 24),
         ),
         flexibleSpace: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -88,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
                 'assets/bg2.png'), // Ganti dengan path gambar background Anda
@@ -301,6 +303,30 @@ class _RegisterPageState extends State<RegisterPage> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    final name = _nameController.text;
+                    final father = _fatherController.text;
+                    final mother = _motherController.text;
+                    final contact = _contactController.text;
+                    final education = _selectedEducation.toString();
+                    final village = _selectedVillage.toString();
+                    final group = _selectedGroup.toString();
+                    final gender = _selectedGender.toString();
+                    final birthDate = _selectedDate.toString();
+
+                    context.read<RegisterBloc>();
+
+                    // name: name,
+                    // gender: gender,
+                    // father: father,
+                    // mother: mother,
+                    // desa: village,
+                    // kelompok: group,
+                    // ttl: birthDate,
+                    // pendidikan: education,
+                    // kontak: contact,
+                    // kodesGenerus: "",
+                    // image: _image
+
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -310,8 +336,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
+                  backgroundColor: const Color.fromARGB(255, 145, 99, 82),
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  primary: const Color.fromARGB(255, 145, 99, 82),
                 ),
                 child: const Text('Submit', style: TextStyle(fontSize: 16.0)),
               ),
