@@ -49,10 +49,7 @@ class RegisterFailure extends RegisterState {
 
 // BLoC
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  RegisterBloc(super.initialState);
-
-  @override
-  RegisterState get initialState => RegisterInitial();
+  RegisterBloc() : super(RegisterInitial());
 
   @override
   Stream<RegisterState> mapEventToState(RegisterEvent event) async* {
@@ -73,7 +70,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         };
 
         final String apiUrl =
-            'http://195.35.32.223:8081/addGenerus'; // Sesuaikan dengan alamat API Anda
+            'http://localhost:8081/addGenerus'; // Sesuaikan dengan alamat API Anda
 
         // Membuat request multipart
         var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
@@ -89,8 +86,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           var length = await event.image!.length();
 
           var multipartFile = http.MultipartFile(
-              'fileImage', imageStream, length,
-              filename: event.image!.path.split('/').last);
+            'fileImage',
+            imageStream,
+            length,
+            filename: event.image!.path.split('/').last,
+          );
 
           request.files.add(multipartFile);
         }
@@ -105,8 +105,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         } else {
           // Jika gagal, kirim state RegisterFailure dengan pesan kesalahan dari API
           final responseData = await response.stream.bytesToString();
-
-          yield RegisterFailure(error: "error");
+          yield RegisterFailure(error: responseData);
         }
       } catch (error) {
         // Jika terjadi kesalahan selama proses, kirim state RegisterFailure dengan pesan kesalahan
