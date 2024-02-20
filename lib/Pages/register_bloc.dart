@@ -70,7 +70,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         };
 
         final String apiUrl =
-            'http://localhost:8081/addGenerus'; // Sesuaikan dengan alamat API Anda
+            'https://d1b3-36-72-31-111.ngrok-free.app/addGenerus'; // Sesuaikan dengan alamat API Anda
 
         // Membuat request multipart
         var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
