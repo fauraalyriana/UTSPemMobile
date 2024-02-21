@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_uts/Pages/profile.dart';
 import '../Component/navbar.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ShowDataTable extends StatefulWidget {
   const ShowDataTable({super.key});
@@ -10,8 +12,30 @@ class ShowDataTable extends StatefulWidget {
 }
 
 class _ShowDataTableState extends State<ShowDataTable> {
+  final http.Client httpClient = http.Client();
+
   String dummyValue1 = 'Desa';
   String dummyValue2 = 'Semua';
+
+  List<dynamic> _data = [];
+
+  Future<void> _fetchData() async {
+    final response =
+        await httpClient.get(Uri.parse('localhost:8081/listGenerus'));
+    if (response.statusCode == 200) {
+      setState(() {
+        _data = json.decode(response.body);
+      });
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +125,7 @@ class _ShowDataTableState extends State<ShowDataTable> {
                       width: 1.0,
                     ),
                   ),
-                  columns: [
+                  columns: <DataColumn>[
                     DataColumn(label: Text('No.')),
                     DataColumn(label: Text('Nama')),
                     DataColumn(label: Text('Jenis Kelamin')),
@@ -112,46 +136,34 @@ class _ShowDataTableState extends State<ShowDataTable> {
                     DataColumn(label: Text('Tanggal lahir')),
                     DataColumn(label: Text('Profil')),
                   ],
-                  rows: [
-                    DataRow(cells: [
-                      DataCell(Text('1')),
-                      DataCell(Text('cici')),
-                      DataCell(Text('Perempuan')),
-                      DataCell(Text('Nono')),
-                      DataCell(Text('Lin')),
-                      DataCell(Text('S1')),
-                      DataCell(Text('04957854')),
-                      DataCell(Text('4 des 202')),
-                      DataCell(
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
-                          ),
-                          child: Text('Cek'),
-                        ),
-                      ),
-                    ]),
-                    DataRow(cells: [
-                      DataCell(Text('2')),
-                      DataCell(Text('Egar')),
-                      DataCell(Text('Laki-laki')),
-                      DataCell(Text('Nono')),
-                      DataCell(Text('Lin')),
-                      DataCell(Text('S1')),
-                      DataCell(Text('0324837234')),
-                      DataCell(Text('4 des 2002')),
-                      DataCell(
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
-                          ),
-                          child: Text('Cek'),
-                        ),
-                      ),
-                    ]),
-                  ],
+                  rows: List<DataRow>.generate(
+                      _data.length,
+                      (index) => DataRow(cells: <DataCell>[
+                            DataCell(Text(index.toString())),
+                            DataCell(Text(_data[index]['nama'])),
+                            DataCell(Text(_data[index]['jeniskelamin'])),
+                            DataCell(Text(_data[index]['ayah'])),
+                            DataCell(Text(_data[index]['ibu'])),
+                            DataCell(Text(_data[index]['pendidikan'])),
+                            DataCell(Text(_data[index]['kontak'])),
+                            DataCell(Text(_data[index]['ttl'])),
+                            DataCell(
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ProfilePage(), // Mengirim data langsung ke halaman profil
+                                    ),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.green,
+                                ),
+                                child: Text('Cek'),
+                              ),
+                            ),
+                          ])),
                 ),
               ),
             ),

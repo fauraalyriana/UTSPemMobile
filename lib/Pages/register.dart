@@ -10,8 +10,8 @@ import 'package:flutter_app_uts/Pages/login.dart';
 import 'package:flutter_app_uts/Pages/listView.dart';
 
 final List<String> _educationList = ['SD', 'SMP', 'SMA'];
-final List<String> _villageList = ['Barat 1', 'Barat 2', 'Barat 3'];
-final List<String> _groupList = ['Sukra 1', 'Sukra 2', 'Sukra 3'];
+final List<String> _villageList = ['Barat 2'];
+final List<String> _groupList = ['sumbermulya', 'kebonkaret', 'mekarjati', 'haurgeulis', 'tanjung jaya'];
 final List<String> _genderList = ['Laki-laki', 'Perempuan'];
 
 class RegisterPage extends StatefulWidget {
@@ -361,55 +361,3 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 }
-
-
-// class _RegisterPageState extends State<RegisterPage> {
-//   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-//   final TextEditingController _nameController = TextEditingController();
-//   final TextEditingController _fatherController = TextEditingController();
-//   final TextEditingController _motherController = TextEditingController();
-//   final TextEditingController _contactController = TextEditingController();
-
-//   DateTime _selectedDate = DateTime.now();
-
-//   String _selectedEducation = _educationList.first;
-//   String _selectedVillage = _villageList.first;
-//   String _selectedGroup = _groupList.first;
-//   String _selectedGender = _genderList.first;
-
-//   File? _image;
-
-//   Future<void> _selectDate(BuildContext context) async {
-//     final DateTime? picked = await showDatePicker(
-//       context: context,
-//       initialDate: _selectedDate,
-//       firstDate: DateTime(1900),
-//       lastDate: DateTime.now(),
-//     );
-
-//     if (picked != null && picked != _selectedDate) {
-//       setState(() {
-//         _selectedDate = picked;
-//       });
-//     }
-//   }
-
-//   Future<void> _getImage() async {
-//     final picker = ImagePicker();
-
-//     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-//     setState(() {
-//       if (pickedFile != null) {
-//         _image = File(pickedFile.path);
-//       }
-//     });
-//   }
-
-//   // @override
-//   // Widget build(BuildContext context) {
-
-    
-//   // }
-// }
